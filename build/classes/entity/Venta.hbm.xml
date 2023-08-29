@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entity.Venta" table="Venta" catalog="cerveza">
+        <id name="idventa" type="java.lang.Integer">
+            <column name="idventa"/>
+            <generator class="identity" />
+        </id>
+        <many-to-one name="expendio" class="entity.Expendio" fetch="select">
+            <column name="idexpendio" not-null="true" />
+        </many-to-one>
+         <many-to-one name="cerveza" class="entity.Cerveza" fetch="select">
+            <column name="idcerveza" not-null="true" />
+        </many-to-one>
+        <property name="cantidad" type="java.lang.Integer">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <property name="fecha" type="string">
+            <column name="fecha" not-null="true" />
+        </property> 
+        <property name="precioUni" type="java.lang.Float">
+            <column name="precioUni" not-null="true" />
+        </property> 
+    </class>
+</hibernate-mapping>

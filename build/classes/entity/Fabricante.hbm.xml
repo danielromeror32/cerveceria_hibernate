@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-may-2014 18:42:18 by Hibernate Tools 3.6.0 -->
+
+<hibernate-mapping>
+    <class name="entity.Fabricante" table="fabricante" catalog="cerveza">
+        <id name="idfabricante" type="java.lang.Integer">
+            <column name="idfabricante"/>
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" not-null="true" />
+        </property>
+        <property name="estado" type="string">
+            <column name="estado" length="30" not-null="true" />
+        </property>
+        <property name="municipio" type="string">
+            <column name="municipio" length="25" not-null="true" />
+        </property>
+        <property name="ubicacion" type="string">
+            <column name="ubicacion" length="50" not-null="true" />
+        </property>
+        <set name="pedidos" table="pedido" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idfabricante" not-null="true" />
+            </key>
+            <one-to-many class="entity.Pedido" />
+        </set>
+        <set name="marcas" table="marca" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idfabricante" not-null="true" />
+            </key>
+            <one-to-many class="entity.Marca" />
+        </set>
+    </class>
+</hibernate-mapping>

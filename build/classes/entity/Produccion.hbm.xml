@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="entity.Produccion" table="produccion" catalog="cerveza">
+        <id name="idproduccion" type="java.lang.Integer">
+            <column name="idproduccion"/>
+            <generator class="identity" />
+        </id>
+         <many-to-one name="cerveza" class="entity.Cerveza" fetch="select">
+            <column name="idcerveza" not-null="true" />
+        </many-to-one>
+        <property name="cantidad" type="java.lang.Integer">
+            <column name="cantidad" not-null="true" />
+        </property>
+        <property name="fecha" type="string">
+            <column name="fecha"  not-null="true" />
+        </property> 
+    </class>
+</hibernate-mapping>

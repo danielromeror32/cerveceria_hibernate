@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 13-may-2014 18:42:18 by Hibernate Tools 3.6.0 -->
+
+<hibernate-mapping>
+    <class name="entity.Cerveza" table="cerveza" catalog="cerveza">
+        <id name="idcerveza" type="java.lang.Integer">
+            <column name="idcerveza"/>
+            <generator class="identity" />
+        </id>
+        <many-to-one name="marca" class="entity.Marca" fetch="select">
+            <column name="idmarca" not-null="true" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="nombre" length="25" not-null="true" />
+        </property>
+        <property name="presentacion" type="string">
+            <column name="presentacion" length="25" not-null="true" />
+        </property> 
+        <property name="gradacion" type="string">
+            <column name="gradacion" length="25" not-null="true" />
+        </property> 
+        <property name="tipo" type="string">
+            <column name="tipo" length="20" not-null="true" />
+        </property> 
+        <property name="aspecto" type="string">
+            <column name="aspecto" length="30" not-null="true" />
+        </property>
+        <property name="procedimientos" type="string">
+            <column name="procedimientos" length="100" not-null="true" />
+        </property>
+        <set name="produccciones" table="produccion" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcerveza" not-null="true" />
+            </key>
+            <one-to-many class="entity.Produccion" />
+        </set>
+        <set name="pedidos" table="pedido" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcerveza" not-null="true" />
+            </key>
+            <one-to-many class="entity.Pedido" />
+        </set>
+        <set name="ventas" table="venta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcerveza" not-null="true" />
+            </key>
+            <one-to-many class="entity.Venta" />
+        </set>
+        <set name="recetas" table="receta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcerveza" not-null="true" />
+            </key>
+            <one-to-many class="entity.Receta" />
+        </set>
+        <set name="inventarios" table="inventario" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idcerveza" not-null="true" />
+            </key>
+            <one-to-many class="entity.Inventario" />
+        </set>
+    </class>
+</hibernate-mapping>
